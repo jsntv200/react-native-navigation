@@ -5,6 +5,7 @@ import { Icon } from 'react-native-elements';
 import Feed from '../screens/Feed';
 import Me from '../screens/Me';
 import Settings from '../screens/Settings';
+import Splash from '../screens/Splash';
 import UserDetail from '../screens/UserDetail';
 
 export const FeedStack = StackNavigator({
@@ -56,6 +57,9 @@ export const Tabs = TabNavigator({
 
 export default StackNavigator(
   {
+    Splash: {
+      screen: Splash,
+    },
     Tabs: {
       screen: Tabs,
     },
