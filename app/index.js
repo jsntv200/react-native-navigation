@@ -1,4 +1,20 @@
 import React from 'react';
-import { Root } from './config/router';
+import { Provider, connect } from 'react-redux';
+import { addNavigationHelpers } from 'react-navigation';
 
-export default () => <Root />;
+import Navigator from './config/router';
+import store from './config/store';
+
+const App = ({ dispatch, router }) =>
+  <Navigator navigation={addNavigationHelpers({ dispatch, state: router })} />;
+
+const mapStateToProps = state => ({
+  router: state.router,
+});
+
+const AppWithNavigation = connect(mapStateToProps)(App);
+
+export default () =>
+  <Provider store={store}>
+    <AppWithNavigation />
+  </Provider>;
