@@ -2,19 +2,18 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-//import Feed from '../screens/Feed';
-import Feed from '../containers/Recipes';
-import Me from '../screens/Me';
+import Recipes from '../containers/Recipes';
+import Profile from '../screens/Profile';
 import Settings from '../screens/Settings';
 import SignIn from '../containers/SignIn';
 import Splash from '../screens/Splash';
 import UserDetail from '../screens/UserDetail';
 
-export const FeedStack = StackNavigator({
-  Feed: {
-    screen: Feed,
+export const RecipesStack = StackNavigator({
+  Recipes: {
+    screen: Recipes,
     navigationOptions: {
-      title: 'Feed',
+      title: 'Recipes',
     },
   },
   UserDetail: {
@@ -39,19 +38,19 @@ export const SettingsStack = StackNavigator({
 });
 
 export const Tabs = TabNavigator({
-  Feed: {
-    screen: FeedStack,
+  Recipes: {
+    screen: RecipesStack,
     navigationOptions: {
-      tabBarLabel: 'Feed',
+      tabBarLabel: 'Recipes',
       tabBarIcon: ({ tintColor }) => (
         <Icon name="list" size={35} color={tintColor} />
       ),
     },
   },
-  Me: {
-    screen: Me,
+  Profile: {
+    screen: Profile,
     navigationOptions: {
-      tabBarLabel: 'Me',
+      tabBarLabel: 'Profile',
       tabBarIcon: ({ tintColor }) => (
         <Icon name="account-circle" size={35} color={tintColor} />
       ),

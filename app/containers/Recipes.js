@@ -19,7 +19,7 @@ class RecipesContainer extends Component {
         <List>
           {recipes.list.map(item => (
             <RecipeListItem
-              id={item.id}
+              key={item.id}
               avatarUri={`https://dev-api.12wbt.com/${item.imageUrl.thumb2x}`}
               title={item.name}
               onPress={() => navigation.navigate('UserDetail', { ...user })}
@@ -35,8 +35,12 @@ const mapStateToProps = ({ recipes }) => ({
   recipes,
 });
 
-const mapDispatchToProps = dispatch => ({
-  recipesFetch: page => dispatch(recipesFetch(page)),
-});
+// const mapDispatchToProps = dispatch => ({
+//   recipesFetch: page => dispatch(recipesFetch(page)),
+// });
+
+const mapDispatchToProps = {
+  recipesFetch,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipesContainer);
