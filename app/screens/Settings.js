@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { Button, List, ListItem } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 
-export default ({ navigation }) =>
+export default ({ navigation }) => (
   <ScrollView style={{ marginTop: -20 }}>
     <List>
       <ListItem title="Notifications" />
@@ -18,4 +18,5 @@ export default ({ navigation }) =>
       buttonStyle={{ marginTop: 20 }}
       onPress={() => navigation.goBack(null)}
     />
-  </ScrollView>;
+  </ScrollView>
+);

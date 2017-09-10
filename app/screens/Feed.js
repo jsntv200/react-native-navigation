@@ -3,10 +3,10 @@ import { ScrollView, View } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { users } from '../config/data';
 
-export default ({ navigation }) =>
+export default ({ navigation }) => (
   <ScrollView style={{ marginTop: -20 }}>
     <List>
-      {users.map(user =>
+      {users.map(user => (
         <ListItem
           key={user.login.username}
           roundAvatar
@@ -15,6 +15,7 @@ export default ({ navigation }) =>
           subtitle={user.email}
           onPress={() => navigation.navigate('UserDetail', { ...user })}
         />
-      )}
+      ))}
     </List>
-  </ScrollView>;
+  </ScrollView>
+);

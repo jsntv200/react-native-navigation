@@ -14,7 +14,10 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "expo": "^20.0.0",
+    "humps": "^2.0.1",
+    "qs": "^6.5.1",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.47.0",
     "react-native-elements": "^0.16.0",
@@ -22,7 +25,9 @@
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "redux-logic": "^0.12.2",
+    "rxjs": "^5.4.3"
   },
   "devDependencies": {
     "jest-expo": "~20.0.0",
