@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Card, Button, FormLabel, FormInput } from 'react-native-elements';
 
-export default ({ email, password, onSubmit }) => (
+export default ({ email, loading, password, onSubmit }) => (
   <View style={{ paddingVertical: 20 }}>
     <Card title="SIGN IN">
       <FormLabel>Email</FormLabel>
@@ -23,6 +23,7 @@ export default ({ email, password, onSubmit }) => (
       />
       <Button
         backgroundColor="#03A9F4"
+        loading={loading}
         buttonStyle={{ marginTop: 20 }}
         onPress={() => onSubmit(email, password)}
         title="SIGN IN"

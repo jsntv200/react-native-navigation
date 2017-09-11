@@ -18,13 +18,6 @@ export const RecipesStack = StackNavigator({
   },
   RecipeDetail: {
     screen: RecipeDetail,
-    navigationOptions: ({ navigation }) => {
-      const { name } = navigation.state.params;
-
-      return {
-        title: 'Recipes',
-      };
-    },
   },
 });
 
@@ -42,16 +35,18 @@ export const Tabs = TabNavigator({
     screen: RecipesStack,
     navigationOptions: {
       tabBarLabel: 'Recipes',
-      tabBarIcon: ({ tintColor }) =>
-        <Icon name="list" size={35} color={tintColor} />,
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="list" size={35} color={tintColor} />
+      ),
     },
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
       tabBarLabel: 'Profile',
-      tabBarIcon: ({ tintColor }) =>
-        <Icon name="account-circle" size={35} color={tintColor} />,
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="account-circle" size={35} color={tintColor} />
+      ),
     },
   },
 });
