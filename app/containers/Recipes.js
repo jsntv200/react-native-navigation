@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
 
 import { recipesFetch } from '../logic/recipes';
-import RecipeListItem from '../screens/RecipeListItem';
+import Recipes from '../screens/Recipes';
 
 class RecipesContainer extends Component {
   componentWillMount() {
@@ -12,32 +10,13 @@ class RecipesContainer extends Component {
   }
 
   render() {
-    const { recipes, navigation } = this.props;
-
-    return (
-      <ScrollView style={{ marginTop: -20 }}>
-        <List>
-          {recipes.list.map(item => (
-            <RecipeListItem
-              key={item.id}
-              avatarUri={`https://dev-api.12wbt.com/${item.imageUrl.thumb2x}`}
-              title={item.name}
-              onPress={() => navigation.navigate('UserDetail', { ...user })}
-            />
-          ))}
-        </List>
-      </ScrollView>
-    );
+    return <Recipes recipes={this.props.recipes.list} />;
   }
 }
 
 const mapStateToProps = ({ recipes }) => ({
   recipes,
 });
-
-// const mapDispatchToProps = dispatch => ({
-//   recipesFetch: page => dispatch(recipesFetch(page)),
-// });
 
 const mapDispatchToProps = {
   recipesFetch,

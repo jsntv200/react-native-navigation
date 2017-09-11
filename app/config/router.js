@@ -7,7 +7,7 @@ import Profile from '../screens/Profile';
 import Settings from '../screens/Settings';
 import SignIn from '../containers/SignIn';
 import Splash from '../screens/Splash';
-import UserDetail from '../screens/UserDetail';
+import RecipeDetail from '../screens/RecipeDetail';
 
 export const RecipesStack = StackNavigator({
   Recipes: {
@@ -16,13 +16,13 @@ export const RecipesStack = StackNavigator({
       title: 'Recipes',
     },
   },
-  UserDetail: {
-    screen: UserDetail,
+  RecipeDetail: {
+    screen: RecipeDetail,
     navigationOptions: ({ navigation }) => {
       const { name } = navigation.state.params;
 
       return {
-        title: `${name.first} ${name.last}`.toUpperCase(),
+        title: 'Recipes',
       };
     },
   },
@@ -42,18 +42,16 @@ export const Tabs = TabNavigator({
     screen: RecipesStack,
     navigationOptions: {
       tabBarLabel: 'Recipes',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="list" size={35} color={tintColor} />
-      ),
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="list" size={35} color={tintColor} />,
     },
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
       tabBarLabel: 'Profile',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="account-circle" size={35} color={tintColor} />
-      ),
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="account-circle" size={35} color={tintColor} />,
     },
   },
 });
