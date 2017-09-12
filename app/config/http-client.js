@@ -18,7 +18,7 @@ const handleResponse = response => {
 
 const handleReject = error => {
   if (/40(1|3)/.test(error)) {
-    console.log('Handle rejection/logout');
+    console.log('Will need to find a way to handle rejected responses');
   }
 
   return Promise.reject(error);

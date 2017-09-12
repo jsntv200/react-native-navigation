@@ -1,14 +1,9 @@
 import { applyMiddleware, createStore } from 'redux';
 import { createLogicMiddleware } from 'redux-logic';
 import { rootLogic, rootReducer } from '../logic';
-import { NavigationActions } from 'react-navigation';
 import httpClient from './http-client';
 
-const logic = createLogicMiddleware(rootLogic, {
-  httpClient,
-  navigate: NavigationActions.navigate,
-});
-
+const logic = createLogicMiddleware(rootLogic, { httpClient });
 const middlewares = [logic];
 
 if (process.env.NODE_ENV === 'development') {

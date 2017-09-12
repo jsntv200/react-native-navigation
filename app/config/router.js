@@ -3,7 +3,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import Recipes from '../containers/Recipes';
-import Profile from '../screens/Profile';
+import Profile from '../containers/Profile';
 import Settings from '../screens/Settings';
 import SignIn from '../containers/SignIn';
 import Splash from '../screens/Splash';
@@ -35,18 +35,16 @@ export const Tabs = TabNavigator({
     screen: RecipesStack,
     navigationOptions: {
       tabBarLabel: 'Recipes',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="list" size={35} color={tintColor} />
-      ),
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="list" size={35} color={tintColor} />,
     },
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
       tabBarLabel: 'Profile',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="account-circle" size={35} color={tintColor} />
-      ),
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="account-circle" size={35} color={tintColor} />,
     },
   },
 });

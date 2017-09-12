@@ -18,14 +18,16 @@ export default ({ navigation }) => {
         imageSrc={{ uri: `https://dev-api.12wbt.com/${imageUrl.large}` }}
         title={`${name}`.toUpperCase()}
       />
-      <Text style={{ padding: 20 }}>{summary || publicSeoDescription}</Text>
+      <Text style={{ padding: 20 }}>
+        {summary || publicSeoDescription}
+      </Text>
       <Card
-        title="INGREDIENTS"
+        title="INGREDIENT CHECKLIST"
         divider={false}
         containerStyle={{ marginTop: 0, marginBottom: 20 }}
       >
         <List style={{ marginTop: -15 }}>
-          {ingredientsList.map((title, i) => (
+          {ingredientsList.map((title, i) =>
             <ListItem
               key={i}
               title={title}
@@ -33,7 +35,7 @@ export default ({ navigation }) => {
               hideChevron
               containerStyle={{ borderBottomColor: '#e1e8ee' }}
             />
-          ))}
+          )}
         </List>
       </Card>
     </ScrollView>
