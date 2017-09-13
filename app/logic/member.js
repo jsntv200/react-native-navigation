@@ -2,24 +2,24 @@ import { createLogic } from 'redux-logic';
 import { NavigationActions } from 'react-navigation';
 
 // Actions
-const LOGIN = '@@app/auth/LOGIN';
-const LOGIN_SUCCESS = '@@app/auth/LOGIN_SUCCESS';
-const LOGIN_ERROR = '@@app/auth/LOGIN_ERROR';
+const LOGIN = '@@app/member/LOGIN';
+const LOGIN_SUCCESS = '@@app/member/LOGIN_SUCCESS';
+const LOGIN_ERROR = '@@app/member/LOGIN_ERROR';
 
-const LOGOUT = '@@app/auth/LOGOUT';
-const LOGOUT_SUCCESS = '@@app/auth/LOGOUT_SUCCESS';
+const LOGOUT = '@@app/member/LOGOUT';
+const LOGOUT_SUCCESS = '@@app/member/LOGOUT_SUCCESS';
 
-const VALIDATE = '@@app/auth/VALIDATE';
-const VALIDATE_SUCCESS = '@@app/auth/VALIDATE_SUCCESS';
+const VALIDATE = '@@app/member/VALIDATE';
+const VALIDATE_SUCCESS = '@@app/member/VALIDATE_SUCCESS';
 
-const CANCEL = '@@app/auth/CANCEL';
+const CANCEL = '@@app/member/CANCEL';
 
 // Initial State
 const initialState = {
   error: false,
   loading: false,
   message: '',
-  member: {},
+  data: {},
 };
 
 // Observables
@@ -55,7 +55,11 @@ const validateLogic = createLogic({
     failType: LOGOUT_SUCCESS,
   },
   process({ httpClient }) {
-    return httpClient.get('/v1/members/summary');
+    return httpClient.get('/v1/members/summary').then(summary => {
+      return httpClient.get(`/v1/members/${summary.data.id}`).then(member => {
+        return { ...summary.data, ...member.data };
+      });
+    });
   },
 });
 
@@ -80,7 +84,7 @@ const redirectLogic = createLogic({
       }
 
       case LOGOUT_SUCCESS: {
-        // Not working when with a subview
+        // Currently not working within a subview
         navigateTo('SignIn');
         break;
       }
@@ -90,32 +94,37 @@ const redirectLogic = createLogic({
   },
 });
 
-export const authLogic = [
+export const memberLogic = [
   loginLogic,
   logoutLogic,
   redirectLogic,
   validateLogic,
 ];
 
+// Selectors
+export function selectMember(state) {
+  return state.member.data;
+}
+
 // Action Creators
-export function authLogin(email, password) {
+export function memberLogin(email, password) {
   return { type: LOGIN, payload: { email, password } };
 }
 
-export function authLogout() {
+export function memberLogout() {
   return { type: LOGOUT };
 }
 
-export function authLogoutSuccess() {
+export function memberLogoutSuccess() {
   return { type: LOGOUT_SUCCESS };
 }
 
-export function authValidate() {
+export function memberValidate() {
   return { type: VALIDATE };
 }
 
 // Reducer
-export default function authReducer(state = initialState, action = {}) {
+export default function memberReducer(state = initialState, action = {}) {
   const { type, payload } = action;
 
   switch (type) {
@@ -134,7 +143,7 @@ export default function authReducer(state = initialState, action = {}) {
         error: false,
         loading: false,
         message: '',
-        member: { ...payload.data },
+        data: payload,
       };
 
     case LOGIN_ERROR:

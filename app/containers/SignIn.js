@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { authLogin } from '../logic/auth';
+import { memberLogin } from '../logic/member';
 import SignIn from '../screens/SignIn';
 
 const mapStateToProps = ({ loading }) => ({ loading });
 
-const mapDispatchToProps = { authLogin };
+const mapDispatchToProps = { memberLogin };
 
-const SignInContainer = ({ authLogin, loading }) =>
-  <SignIn email="" password="" loading={loading} onSubmit={authLogin} />;
+const SignInContainer = ({ memberLogin, loading }) =>
+  <SignIn email="" password="" loading={loading} onSubmit={memberLogin} />;
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);

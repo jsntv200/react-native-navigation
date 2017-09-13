@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 import router from './router';
 
-import auth, { authLogic } from './auth';
+import member, { memberLogic } from './member';
 import recipes, { recipesLogic } from './recipes';
 
 // Combine logic
-export const rootLogic = [...authLogic, ...recipesLogic];
+export const rootLogic = [...memberLogic, ...recipesLogic];
 
 // Combine reducers
 export const rootReducer = combineReducers({
-  auth,
+  member,
   recipes,
   router,
 });
