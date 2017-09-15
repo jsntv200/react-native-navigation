@@ -5,8 +5,6 @@ import { Icon } from 'react-native-elements';
 import Recipes from '../containers/Recipes';
 import Profile from '../containers/Profile';
 import Settings from '../screens/Settings';
-import SignIn from '../containers/SignIn';
-import Splash from '../screens/Splash';
 import RecipeDetail from '../screens/RecipeDetail';
 
 export const RecipesStack = StackNavigator({
@@ -51,12 +49,6 @@ export const Tabs = TabNavigator({
 
 export default StackNavigator(
   {
-    Splash: {
-      screen: Splash,
-    },
-    SignIn: {
-      screen: SignIn,
-    },
     Tabs: {
       screen: Tabs,
     },

@@ -97,7 +97,7 @@ const redirectLogic = createLogic({
 export const memberLogic = [
   loginLogic,
   logoutLogic,
-  redirectLogic,
+  //redirectLogic,
   validateLogic,
 ];
 
