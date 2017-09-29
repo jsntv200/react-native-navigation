@@ -18,7 +18,10 @@ const handleResponse = response => {
 
 const handleReject = error => {
   if (/40(1|3)/.test(error)) {
-    console.log('Will need to find a way to handle rejected responses');
+    console.log('Will need to find a way to handle rejected responses.');
+    console.log(
+      'Possibly through https://github.com/svrcekmichal/redux-axios-middleware.'
+    );
   }
 
   return Promise.reject(error);

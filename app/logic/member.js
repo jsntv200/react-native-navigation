@@ -3,14 +3,13 @@ import { NavigationActions } from 'react-navigation';
 
 // Actions
 const LOGIN = '@@app/member/LOGIN';
-const LOGIN_SUCCESS = '@@app/member/LOGIN_SUCCESS';
 const LOGIN_ERROR = '@@app/member/LOGIN_ERROR';
 
 const LOGOUT = '@@app/member/LOGOUT';
 const LOGOUT_SUCCESS = '@@app/member/LOGOUT_SUCCESS';
 
-const VALIDATE = '@@app/member/VALIDATE';
-const VALIDATE_SUCCESS = '@@app/member/VALIDATE_SUCCESS';
+const FETCH = '@@app/member/FETCH';
+const FETCH_SUCCESS = '@@app/member/FETCH_SUCCESS';
 
 const CANCEL = '@@app/member/CANCEL';
 
@@ -27,7 +26,7 @@ const loginLogic = createLogic({
   type: LOGIN,
   cancelType: CANCEL,
   processOptions: {
-    successType: VALIDATE,
+    successType: FETCH,
     failType: LOGIN_ERROR,
   },
   process({ action, httpClient }) {
@@ -47,11 +46,11 @@ const logoutLogic = createLogic({
   },
 });
 
-const validateLogic = createLogic({
-  type: VALIDATE,
+const fetchLogic = createLogic({
+  type: FETCH,
   cancelType: CANCEL,
   processOptions: {
-    successType: VALIDATE_SUCCESS,
+    successType: FETCH_SUCCESS,
     failType: LOGOUT_SUCCESS,
   },
   process({ httpClient }) {
@@ -64,7 +63,7 @@ const validateLogic = createLogic({
 });
 
 const redirectLogic = createLogic({
-  type: [VALIDATE_SUCCESS, LOGOUT_SUCCESS],
+  type: [FETCH_SUCCESS, LOGOUT_SUCCESS],
   process({ action, navigate }, dispatch, done) {
     const { payload, type } = action;
 
@@ -78,13 +77,12 @@ const redirectLogic = createLogic({
     };
 
     switch (type) {
-      case VALIDATE_SUCCESS: {
+      case FETCH_SUCCESS: {
         navigateTo('Tabs');
         break;
       }
 
       case LOGOUT_SUCCESS: {
-        // Currently not working within a subview
         navigateTo('SignIn');
         break;
       }
@@ -94,12 +92,7 @@ const redirectLogic = createLogic({
   },
 });
 
-export const memberLogic = [
-  loginLogic,
-  logoutLogic,
-  //redirectLogic,
-  validateLogic,
-];
+export const memberLogic = [loginLogic, logoutLogic, fetchLogic];
 
 // Selectors
 export function selectMember(state) {
@@ -119,8 +112,8 @@ export function memberLogoutSuccess() {
   return { type: LOGOUT_SUCCESS };
 }
 
-export function memberValidate() {
-  return { type: VALIDATE };
+export function memberFetch() {
+  return { type: FETCH };
 }
 
 // Reducer
@@ -130,14 +123,14 @@ export default function memberReducer(state = initialState, action = {}) {
   switch (type) {
     case LOGIN:
     case LOGOUT:
-    case VALIDATE:
+    case FETCH:
       return {
         ...state,
         error: false,
         loading: true,
       };
 
-    case VALIDATE_SUCCESS:
+    case FETCH_SUCCESS:
       return {
         ...state,
         error: false,
